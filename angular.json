@@ -1,0 +1,92 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "fixtures",
+  "cli": { "packageManager": "npm", "analytics": false },
+  "projects": {
+    "basic-app": {
+      "projectType": "application",
+      "root": "fixtures/basic-app",
+      "sourceRoot": "fixtures/basic-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "fixtures/basic-app/src/main.ts",
+            "tsConfig": "fixtures/basic-app/tsconfig.app.json",
+            "index": "fixtures/basic-app/src/index.html",
+            "outputPath": "dist/basic-app-official",
+            "polyfills": ["fixtures/basic-app/src/polyfills.ts"],
+            "styles": ["fixtures/basic-app/src/styles.css"],
+            "assets": [{ "glob": "**/*", "input": "fixtures/basic-app/public" }]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "fixtures/basic-app/src/environments/environment.ts",
+                  "with": "fixtures/basic-app/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": { "optimization": false, "extractLicenses": false, "sourceMap": true }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": { "buildTarget": "basic-app:build:production" },
+            "development": { "buildTarget": "basic-app:build:development" }
+          },
+          "defaultConfiguration": "development"
+        },
+        "build-rollup": {
+          "builder": "@acme/angular-rollup-builder:build",
+          "options": {
+            "browser": "fixtures/basic-app/src/main.ts",
+            "tsConfig": "fixtures/basic-app/tsconfig.app.json",
+            "index": "fixtures/basic-app/src/index.html",
+            "outputPath": "dist/basic-app-rollup",
+            "polyfills": ["fixtures/basic-app/src/polyfills.ts"],
+            "styles": ["fixtures/basic-app/src/styles.css"],
+            "assets": ["fixtures/basic-app/public"],
+            "baseHref": "/"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "fileReplacements": [
+                {
+                  "replace": "fixtures/basic-app/src/environments/environment.ts",
+                  "with": "fixtures/basic-app/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": { "optimization": false, "sourceMap": true },
+            "subpath": {
+              "optimization": true,
+              "sourceMap": false,
+              "baseHref": "/demo/",
+              "outputPath": "dist/basic-app-rollup-demo"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-rollup": {
+          "builder": "@acme/angular-rollup-builder:dev-server",
+          "options": { "host": "localhost", "port": 4300, "liveReload": true },
+          "configurations": {
+            "production": { "buildTarget": "basic-app:build-rollup:production" },
+            "development": { "buildTarget": "basic-app:build-rollup:development" },
+            "subpath": { "buildTarget": "basic-app:build-rollup:subpath" }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  }
+}

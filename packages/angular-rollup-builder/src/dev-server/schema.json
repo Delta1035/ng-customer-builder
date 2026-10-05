@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Angular Rollup Dev Server Builder",
+  "description": "开发服务器选项。构建配置全部来自 buildTarget 指向的 build 目标。",
+  "type": "object",
+  "properties": {
+    "buildTarget": {
+      "type": "string",
+      "description": "要服务的构建目标，格式 project:target[:configuration]；必须使用本包的 build Builder。",
+      "pattern": "^[^:\\s]*:[^:\\s]*(:[^\\s]+)?$"
+    },
+    "host": {
+      "type": "string",
+      "default": "localhost",
+      "description": "监听地址。默认只监听本机。"
+    },
+    "port": {
+      "type": "number",
+      "default": 4200,
+      "description": "监听端口。"
+    },
+    "liveReload": {
+      "type": "boolean",
+      "default": true,
+      "description": "构建成功后通知浏览器整页刷新。"
+    },
+    "hmr": {
+      "type": "boolean",
+      "default": false,
+      "description": "首版不支持 HMR；设为 true 会被明确拒绝。"
+    }
+  },
+  "required": ["buildTarget"],
+  "additionalProperties": false
+}

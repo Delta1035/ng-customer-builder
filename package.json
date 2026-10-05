@@ -1,0 +1,43 @@
+{
+  "name": "ng-customer-builder-workspace",
+  "private": true,
+  "description": "Angular 自定义 Rollup 构建器（AOT + Rollup + 自有开发服务器）的工作区：构建器包 + 示例应用 + partial-Ivy 测试库",
+  "workspaces": [
+    "packages/angular-rollup-builder",
+    "fixtures/partial-ivy-library"
+  ],
+  "scripts": {
+    "build:builder": "npm run build -w @acme/angular-rollup-builder",
+    "build:lib": "npm run build -w @acme/greeting-lib",
+    "prepare:all": "npm run build:builder && npm run build:lib",
+    "build:rollup": "ng run basic-app:build-rollup:production",
+    "build:rollup:dev": "ng run basic-app:build-rollup:development",
+    "serve:rollup": "ng run basic-app:serve-rollup:development",
+    "build:official": "ng run basic-app:build:production",
+    "test:unit": "npm test -w @acme/angular-rollup-builder",
+    "test:e2e": "node --test --test-concurrency=1 \"e2e/*.e2e.test.mjs\"",
+    "test:pack": "node scripts/pack-install-test.mjs",
+    "benchmark": "node scripts/benchmark.mjs"
+  },
+  "dependencies": {
+    "@angular/common": "22.2.1",
+    "@angular/compiler": "22.2.1",
+    "@angular/core": "22.2.1",
+    "@angular/forms": "22.2.1",
+    "@angular/platform-browser": "22.2.1",
+    "@angular/router": "22.2.1",
+    "rxjs": "~7.8.2",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/architect": "^0.2202.1",
+    "@angular-devkit/core": "^22.2.1",
+    "@angular/build": "22.2.1",
+    "@angular/cli": "22.2.1",
+    "@angular/compiler-cli": "22.2.1",
+    "@types/node": "^24.0.0",
+    "playwright-core": "^1.63.0",
+    "typescript": "~6.0.3",
+    "zone.js": "^0.16.3"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@acme/greeting-lib",
+  "version": "0.1.0",
+  "description": "测试用 Angular 库：以 partial 模式编译，用于验证构建器的 Linker 链路",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "module": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "ngc -p tsconfig.lib.json"
+  },
+  "peerDependencies": {
+    "@angular/core": "^22.0.0"
+  }
+}

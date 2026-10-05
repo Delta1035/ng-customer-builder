@@ -1,0 +1,13 @@
+@import './theme.css';
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+.global-banner {
+  background-image: url('./assets/stripe.svg');
+  padding: 8px 16px;
+}

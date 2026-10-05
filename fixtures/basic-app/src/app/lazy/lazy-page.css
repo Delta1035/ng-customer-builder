@@ -1,0 +1,10 @@
+h2 {
+  color: rgb(156, 39, 176);
+}
+
+/* 组件样式里的相对 url()：构建器需要把图片输出到产物并改写 URL */
+.dot-box {
+  width: 16px;
+  height: 16px;
+  background-image: url('../../assets/dot.svg');
+}

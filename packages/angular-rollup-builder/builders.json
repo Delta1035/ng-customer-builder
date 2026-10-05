@@ -1,0 +1,14 @@
+{
+  "builders": {
+    "build": {
+      "implementation": "./dist/build/index.js",
+      "schema": "./dist/build/schema.json",
+      "description": "Angular AOT 编译 + Rollup 打包（浏览器 CSR 应用）"
+    },
+    "dev-server": {
+      "implementation": "./dist/dev-server/index.js",
+      "schema": "./dist/dev-server/schema.json",
+      "description": "基于自有 HTTP 服务器的开发服务（watch + 整页刷新）"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Angular Rollup Build Builder",
+  "description": "Angular AOT + Rollup 构建选项。所有路径均相对于工作区根目录。未列出的字段会被拒绝，不会被静默忽略。",
+  "type": "object",
+  "properties": {
+    "browser": {
+      "type": "string",
+      "description": "应用入口（例如 src/main.ts）。"
+    },
+    "tsConfig": {
+      "type": "string",
+      "description": "应用的 TypeScript 配置文件。"
+    },
+    "index": {
+      "type": "string",
+      "description": "HTML 模板。必须包含显式的 <head> 和 <body> 标签。"
+    },
+    "outputPath": {
+      "type": "string",
+      "description": "最终浏览器产物目录（不会自动追加 browser/ 子目录）。"
+    },
+    "styles": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "有序的全局 CSS 文件，合并输出为 styles.css。"
+    },
+    "assets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "资源目录列表，目录内容原样复制到输出根目录；同名文件冲突时报错。"
+    },
+    "polyfills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "有序 polyfills：.ts 文件、./ 开头的路径或工作区中存在的文件视为工作区相对文件，其余视为模块说明符（如 zone.js）。"
+    },
+    "baseHref": {
+      "type": "string",
+      "default": "/",
+      "description": "部署基础路径，必须以 / 开头。"
+    },
+    "fileReplacements": {
+      "type": "array",
+      "default": [],
+      "description": "文件替换。同时作用于 Angular 类型检查/编译与 Rollup 打包。",
+      "items": {
+        "type": "object",
+        "properties": {
+          "replace": { "type": "string" },
+          "with": { "type": "string" }
+        },
+        "required": ["replace", "with"],
+        "additionalProperties": false
+      }
+    },
+    "optimization": {
+      "type": "boolean",
+      "default": false,
+      "description": "生产优化：压缩、内容哈希文件名、关闭 Angular 开发模式检查。"
+    },
+    "sourceMap": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否生成 Source Map（首版仅支持 boolean）。"
+    },
+    "watch": {
+      "type": "boolean",
+      "default": false,
+      "description": "持续构建模式。"
+    }
+  },
+  "required": ["browser", "tsConfig", "index", "outputPath"],
+  "additionalProperties": false
+}

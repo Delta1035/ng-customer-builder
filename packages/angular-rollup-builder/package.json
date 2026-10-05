@@ -1,0 +1,39 @@
+{
+  "name": "@acme/angular-rollup-builder",
+  "version": "0.1.0",
+  "description": "Angular CLI 自定义 Builder：Angular AOT 编译 + Rollup 打包 + 自有开发服务器（不使用 esbuild / Vite）",
+  "license": "MIT",
+  "type": "commonjs",
+  "builders": "./builders.json",
+  "files": [
+    "builders.json",
+    "dist/**/*",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "engines": {
+    "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
+  },
+  "peerDependencies": {
+    "@angular-devkit/architect": ">=0.2200.0 <0.2300.0",
+    "@angular/compiler-cli": "^22.0.0",
+    "typescript": ">=6.0 <6.1"
+  },
+  "dependencies": {
+    "@babel/core": "^8.0.1",
+    "@rollup/plugin-commonjs": "^29.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "chokidar": "^5.0.0",
+    "magic-string": "^1.4.1",
+    "parse5": "^8.0.1",
+    "postcss": "^8.5.28",
+    "rollup": "^4.64.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/architect": "0.2202.1"
+  }
+}

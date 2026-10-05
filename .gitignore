@@ -1,0 +1,9 @@
+node_modules/
+dist/
+out-tsc/
+.angular/
+.e2e-tmp/
+.scratch/
+*.tgz
+packages/angular-rollup-builder/dist/
+fixtures/partial-ivy-library/dist/
